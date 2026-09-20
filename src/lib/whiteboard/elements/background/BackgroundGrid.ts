@@ -1,5 +1,5 @@
-import RenderElement from "$lib/whiteboard/renderer/RenderElement";
-import { RenderFlags } from "$lib/whiteboard/renderer/RenderFlags";
+import RenderElement from '$lib/whiteboard/renderer/RenderElement';
+import { RenderFlags } from '$lib/whiteboard/renderer/RenderFlags';
 
 export const BACKGROUND_GRID_ID = 'whiteboard-background-grid';
 

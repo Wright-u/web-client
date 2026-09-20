@@ -3,9 +3,7 @@
 	import Whiteboard from '$lib/whiteboard/renderer/Whiteboard.svelte';
 
 	const service: IElementService = {
-		getWhiteboardElements: () => [
-			
-		]
+		getWhiteboardElements: () => []
 	};
 </script>
 

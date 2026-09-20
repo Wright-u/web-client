@@ -3,7 +3,10 @@
 	import { ElementStore } from './ElementStore.svelte';
 	import BackgroundGrid from '../elements/background/BackgroundGrid.svelte';
 	import type { IElementService } from './IElementService';
-	import { BACKGROUND_GRID_ID, createBackgroundGrid } from '../elements/background/BackgroundGrid';
+	import {
+		BACKGROUND_GRID_ID,
+		createBackgroundGrid
+	} from '../elements/background/BackgroundGrid';
 
 	let {
 		service,
@@ -141,5 +144,4 @@
 	.viewport :global([data-element-id]:focus-within) {
 		user-select: text;
 	}
-
 </style>

@@ -1,42 +1,42 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
-  pull_request:
-    branches:
-      - main
+    pull_request:
+        branches:
+            - main
 
 jobs:
-  ci:
-    name: Lint, Check, Test & Build
-    runs-on: ubuntu-latest
+    ci:
+        name: Lint, Check, Test & Build
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-      - name: Lint
-        run: npm run lint
+            - name: Install Playwright browsers
+              run: npx playwright install --with-deps chromium
+            - name: Lint
+              run: npm run lint
 
-      - name: Check Svelte and TypeScript
-        run: npm run check
+            - name: Check Svelte and TypeScript
+              run: npm run check
 
-      - name: Run unit tests
-        run: npm run test:unit -- --run
+            - name: Run unit tests
+              run: npm run test:unit -- --run
 
-      - name: Build
-        run: npm run build
+            - name: Build
+              run: npm run build

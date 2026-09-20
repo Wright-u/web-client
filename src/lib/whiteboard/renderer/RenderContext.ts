@@ -1,3 +1,1 @@
-export default class RenderContext {
-    
-}
+export default class RenderContext {}
