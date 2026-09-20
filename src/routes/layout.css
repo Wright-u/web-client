@@ -1,1 +1,258 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+:root {
+    color-scheme: light;
+
+    /* Surfaces */
+    --surface-base: #fafaf8;
+    --surface-raised: #ffffff;
+    --surface-subtle: #f2f2ef;
+    --surface-hover: #ebebe7;
+
+    /* Content */
+    --content-strong: #171717;
+    --content-default: #30302e;
+    --content-muted: #737373;
+    --content-on-accent: #171717;
+
+    /* Structure */
+    --border-default: #d9d9d5;
+    --border-strong: #171717;
+    --line-default: #171717;
+    --line-muted: #737373;
+
+    /* Accent: intentionally sparse */
+    --accent-default: #bcf47b;
+    --accent-hover: #aceb65;
+    --accent-pressed: #9ddd56;
+    --accent-strong: #5f7e36;
+    --accent-soft: #efffdb;
+
+    /* Interaction */
+    --focus-ring: #5f7e36;
+    --selection-glow: rgb(188 244 123 / 28%);
+}
+
+@theme inline {
+    /* Typography */
+    --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    --text-overline: 0.625rem;
+    --text-overline--line-height: 0.875rem;
+    --text-caption: 0.75rem;
+    --text-caption--line-height: 1rem;
+    --text-ui: 0.8125rem;
+    --text-ui--line-height: 1.125rem;
+    --text-copy: 0.875rem;
+    --text-copy--line-height: 1.25rem;
+    --text-title: 1.125rem;
+    --text-title--line-height: 1.5rem;
+    --text-heading: 1.375rem;
+    --text-heading--line-height: 1.75rem;
+
+    /* Semantic colors */
+    --color-base: var(--surface-base);
+    --color-surface: var(--surface-raised);
+    --color-subtle: var(--surface-subtle);
+    --color-hover: var(--surface-hover);
+
+    --color-ink: var(--content-strong);
+    --color-body: var(--content-default);
+    --color-muted: var(--content-muted);
+    --color-on-accent: var(--content-on-accent);
+
+    --color-border: var(--border-default);
+    --color-border-strong: var(--border-strong);
+    --color-line: var(--line-default);
+    --color-line-muted: var(--line-muted);
+
+    --color-accent: var(--accent-default);
+    --color-accent-hover: var(--accent-hover);
+    --color-accent-pressed: var(--accent-pressed);
+    --color-accent-strong: var(--accent-strong);
+    --color-accent-soft: var(--accent-soft);
+    --color-focus: var(--focus-ring);
+
+    /* Shape */
+    --radius-control: 0.5rem;
+    --radius-button: 0.6875rem;
+    --radius-panel: 0.875rem;
+    --radius-card: 1rem;
+    --radius-pill: 9999px;
+
+    /* Elevation */
+    --shadow-raised: 0 4px 16px rgb(0 0 0 / 8%);
+    --shadow-selected: 0 0 0 3px var(--selection-glow),
+    0 4px 16px rgb(0 0 0 / 8%);
+}
+
+@layer base {
+    *,
+    ::before,
+    ::after {
+        border-color: var(--border-default);
+    }
+
+    html {
+        font-family: var(--font-sans);
+        background: var(--surface-base);
+        color: var(--content-default);
+    }
+
+    body {
+        min-width: 20rem;
+        margin: 0;
+        background: var(--surface-base);
+        color: var(--content-default);
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        font: inherit;
+    }
+
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]) {
+        cursor: pointer;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 2px;
+    }
+}
+
+@layer components {
+    /* Surface objects */
+    .ui-surface {
+        @apply border-border bg-surface text-body;
+    }
+
+    .ui-raised {
+        @apply rounded-panel border border-border bg-surface text-body
+        shadow-raised;
+    }
+
+    .ui-panel {
+        @apply overflow-hidden rounded-panel border border-border bg-surface
+        text-body shadow-raised;
+    }
+
+    .ui-card {
+        @apply overflow-hidden rounded-card border border-border bg-surface
+        text-body shadow-raised;
+    }
+
+    .ui-selected {
+        @apply border-[1.5px] border-border-strong shadow-selected;
+    }
+
+    .ui-toolbar {
+        @apply flex items-center gap-1 rounded-panel border border-border
+        bg-surface p-2 text-body shadow-raised;
+    }
+
+    /* Layout objects */
+    .ui-stack {
+        @apply flex flex-col gap-4;
+    }
+
+    .ui-cluster {
+        @apply flex flex-wrap items-center gap-2;
+    }
+
+    .ui-section {
+        @apply border-border border-b px-6 py-5 last:border-b-0;
+    }
+
+    .ui-row {
+        @apply flex min-h-9 items-center justify-between gap-4;
+    }
+
+    .ui-divider {
+        @apply border-border border-t;
+    }
+
+    /* Controls */
+    .ui-button {
+        @apply inline-flex h-9 items-center justify-center gap-2 rounded-button
+        border border-border bg-surface px-3 text-ui font-medium text-ink
+        transition-colors duration-150 hover:bg-subtle active:bg-hover
+        disabled:pointer-events-none disabled:opacity-40;
+    }
+
+    .ui-button-ghost {
+        @apply inline-flex h-9 items-center justify-center gap-2 rounded-button
+        border border-transparent bg-transparent px-3 text-ui font-medium
+        text-ink transition-colors duration-150 hover:bg-subtle active:bg-hover
+        disabled:pointer-events-none disabled:opacity-40;
+    }
+
+    .ui-button-accent {
+        @apply inline-flex h-9 items-center justify-center gap-2 rounded-button
+        border border-accent-strong bg-accent px-3 text-ui font-medium
+        text-on-accent transition-colors duration-150 hover:bg-accent-hover
+        active:bg-accent-pressed disabled:pointer-events-none
+        disabled:opacity-40;
+    }
+
+    .ui-icon-button {
+        @apply inline-flex size-11 items-center justify-center rounded-button
+        border border-transparent bg-transparent text-ink transition-colors
+        duration-150 hover:bg-subtle active:bg-hover disabled:pointer-events-none
+        disabled:opacity-40;
+    }
+
+    .ui-icon-button-active {
+        @apply inline-flex size-11 items-center justify-center rounded-button
+        border border-accent-strong bg-accent text-on-accent transition-colors
+        duration-150 hover:bg-accent-hover active:bg-accent-pressed
+        disabled:pointer-events-none disabled:opacity-40;
+    }
+
+    .ui-badge {
+        @apply inline-flex h-7 items-center justify-center rounded-pill border
+        border-border bg-subtle px-2.5 text-caption font-medium text-muted;
+    }
+
+    .ui-badge-accent {
+        @apply inline-flex h-7 items-center justify-center rounded-pill border
+        border-accent-strong bg-accent px-2.5 text-caption font-medium
+        text-on-accent;
+    }
+
+    .ui-field {
+        @apply h-9 w-full rounded-control border border-border bg-surface px-3
+        text-ui text-ink placeholder:text-muted hover:border-line-muted
+        focus:border-accent-strong focus:outline-none focus:ring-2
+        focus:ring-accent/30 disabled:pointer-events-none disabled:opacity-40;
+    }
+
+    /* Type objects */
+    .ui-overline {
+        @apply text-overline font-semibold tracking-wide text-muted uppercase;
+    }
+
+    .ui-caption {
+        @apply text-caption text-muted;
+    }
+
+    .ui-body {
+        @apply text-copy text-body;
+    }
+
+    .ui-title {
+        @apply text-title font-semibold text-ink;
+    }
+
+    .ui-heading {
+        @apply text-heading font-semibold text-ink;
+    }
+}
