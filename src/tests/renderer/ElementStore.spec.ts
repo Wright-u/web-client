@@ -1,5 +1,5 @@
+import { BACKGROUND_GRID_ID } from '$lib/whiteboard/elements/background/BackgroundGrid';
 import { ElementStore } from '$lib/whiteboard/renderer/ElementStore.svelte';
-import { BACKGROUND_GRID_ID } from '$lib/whiteboard/renderer/BackgroundGrid';
 import type { IElementService } from '$lib/whiteboard/renderer/IElementService';
 import RenderElement from '$lib/whiteboard/renderer/RenderElement';
 import { RenderFlags } from '$lib/whiteboard/renderer/RenderFlags';
