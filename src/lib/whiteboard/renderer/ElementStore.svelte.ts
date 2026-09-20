@@ -1,5 +1,5 @@
+import { BACKGROUND_GRID_ID, createBackgroundGrid } from '../elements/background/BackgroundGrid';
 import type { IElementService } from './IElementService';
-import { BACKGROUND_GRID_ID, createBackgroundGrid } from './BackgroundGrid';
 import type RenderElement from './RenderElement';
 
 export class ElementStore {

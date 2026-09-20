@@ -1,9 +1,23 @@
-export default interface RenderElement {
+export type ElementPosition = { x: number; y: number };
+
+export type RenderElementOptions = {
 	id: string;
-	type: string;
-	position: { x: number; y: number };
-	size: { width: number; height: number };
+	position: ElementPosition;
 	zIndex: number;
-	fixed?: boolean;
-	exemptFrom?: string[];
+};
+
+export default abstract class RenderElement {
+	abstract readonly type: string;
+
+	readonly id: string;
+	position: ElementPosition;
+	zIndex: number;
+
+	abstract readonly flags: number;
+
+	constructor(options: RenderElementOptions) {
+		this.id = options.id;
+		this.position = options.position;
+		this.zIndex = options.zIndex;
+	}
 }
