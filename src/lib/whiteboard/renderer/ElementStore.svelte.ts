@@ -1,11 +1,11 @@
 import { BACKGROUND_GRID_ID, createBackgroundGrid } from '../elements/background/BackgroundGrid';
-import type { IElementService } from './IElementService';
+import type { IEditorService } from '../editor/IEditorService';
 import type RenderElement from './RenderElement';
 
 export class ElementStore {
 	rawElements = $state<RenderElement[]>([createBackgroundGrid()]);
 
-	constructor(private readonly service: IElementService) {}
+	constructor(private readonly service: IEditorService) {}
 
 	add(element: RenderElement): void;
 	add(elements: RenderElement[]): void;
