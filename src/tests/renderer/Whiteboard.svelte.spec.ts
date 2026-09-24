@@ -2,7 +2,7 @@ import { page } from 'vitest/browser';
 import { describe, expect, it, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import MockElement from './__mocks__/MockElement.svelte';
-import type { IEditorService } from '$lib/whiteboard/editor/IEditorService';
+import type { IEditorService } from '$lib/whiteboard/editor/interfaces/IEditorService';
 import RenderElement from '$lib/whiteboard/renderer/RenderElement';
 import ElementComponentFactory from '$lib/whiteboard/renderer/ElementComponentFactory.svelte';
 import Whiteboard from '$lib/whiteboard/renderer/Whiteboard.svelte';

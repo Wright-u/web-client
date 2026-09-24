@@ -1,6 +1,6 @@
 import { BACKGROUND_GRID_ID } from '$lib/whiteboard/elements/background/BackgroundGrid';
 import { ElementStore } from '$lib/whiteboard/renderer/ElementStore.svelte';
-import type { IEditorService } from '$lib/whiteboard/editor/IEditorService';
+import type { IEditorService } from '$lib/whiteboard/editor/interfaces/IEditorService';
 import RenderElement from '$lib/whiteboard/renderer/RenderElement';
 import { RenderFlags } from '$lib/whiteboard/renderer/RenderFlags';
 import { describe, expect, it, vi } from 'vitest';

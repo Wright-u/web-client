@@ -1,5 +1,5 @@
 import { BACKGROUND_GRID_ID, createBackgroundGrid } from '../elements/background/BackgroundGrid';
-import type { IEditorService } from '../editor/IEditorService';
+import type { IEditorService } from '../editor/interfaces/IEditorService';
 import type RenderElement from './RenderElement';
 
 export class ElementStore {
