@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { IElementService } from '$lib/whiteboard/renderer/IElementService';
+	import { ElementStore } from '$lib/whiteboard/renderer/ElementStore.svelte';
 	import Whiteboard from '$lib/whiteboard/renderer/Whiteboard.svelte';
 
-	const service: IElementService = {
-		getWhiteboardElements: () => []
-	};
+	const store = new ElementStore({
+		getWhiteboardElements: async () => []
+	});
 </script>
 
-<Whiteboard {service} />
+<Whiteboard {store} />

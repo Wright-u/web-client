@@ -1,22 +1,20 @@
 <script lang="ts">
 	import ElementComponentFactory from './ElementComponentFactory.svelte';
-	import { ElementStore } from './ElementStore.svelte';
 	import BackgroundGrid from '../elements/background/BackgroundGrid.svelte';
-	import type { IElementService } from './IElementService';
 	import {
 		BACKGROUND_GRID_ID,
 		createBackgroundGrid
 	} from '../elements/background/BackgroundGrid';
+	import type IRenderStore from './IRenderStore';
 
 	let {
-		service,
+		store,
 		factory = new ElementComponentFactory()
 	}: {
-		service: IElementService;
+		store: IRenderStore;
 		factory?: ElementComponentFactory;
 	} = $props();
 
-	let store = $state<ElementStore>();
 	let zoom = $state(1);
 	let pan = $state({ x: 0, y: 0 });
 	let dragStart = $state<{ pointerX: number; pointerY: number; panX: number; panY: number }>();
@@ -76,9 +74,9 @@
 	}
 
 	$effect(() => {
-		const nextStore = new ElementStore(service);
-		nextStore.fetch();
-		store = nextStore;
+		store.load().catch((err) => {
+			console.log('Failed to load elements', err);
+		});
 	});
 </script>
 
@@ -101,7 +99,7 @@
 		class:panning={dragStart}
 		style:transform={`translate(${pan.x}px, ${pan.y}px) scale(${zoom})`}
 	>
-		{#each store?.rawElements ?? [] as element (element.id)}
+		{#each store?.elements ?? [] as element (element.id)}
 			{#if element.id !== BACKGROUND_GRID_ID}
 				{@const ElementComponent = factory.get(element.type)}
 				{#if ElementComponent}
