@@ -33,9 +33,8 @@ function isMapperClass(value: unknown): value is MapperClass {
 
 const modules = import.meta.glob<{default?: unknown}>(
     [
-        "../**/**.ts",
-        "!../interfaces/**",
-        "!../**/*.{test,spec}.ts"
+        "../features/**",
+        "!../features/*.{test,spec}.ts"
     ],
     { eager: true }
 );

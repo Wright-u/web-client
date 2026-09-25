@@ -15,8 +15,10 @@ export default class EditorService implements IEditorService {
 
     async getWhiteboardElements(): Promise<RenderElement[]> {
         const response = await this.api.get<ElementResponse[]>('editor/elements');
-        const mapper = this.mapperFactory.createMapper('element');
-        return response.data.map(mapper.toElement);
+        return response.data.map((e: ElementResponse) => {
+            const mapper = this.mapperFactory.createMapper(e.type);
+            return mapper.toElement(e);
+        });
     }
 
 }
