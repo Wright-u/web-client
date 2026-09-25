@@ -22,8 +22,7 @@ export class ElementStore implements IRenderStore {
 
 		this.rawElements = [
 			createBackgroundGrid(),
-			...fetched
-				.filter((element) => element.id !== BACKGROUND_GRID_ID)
+			...fetched.filter((element) => element.id !== BACKGROUND_GRID_ID)
 		];
 	}
 

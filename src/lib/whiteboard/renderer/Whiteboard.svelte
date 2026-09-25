@@ -74,9 +74,9 @@
 	}
 
 	$effect(() => {
-		store.load().catch((err)=> {
-			console.log("Failed to load elements", err);
-		})
+		store.load().catch((err) => {
+			console.log('Failed to load elements', err);
+		});
 	});
 </script>
 
