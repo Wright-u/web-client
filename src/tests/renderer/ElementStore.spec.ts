@@ -19,16 +19,19 @@ class TestElement extends RenderElement {
 }
 
 describe('ElementStore', () => {
-	it('keeps the fixed background grid while fetching and adding elements', () => {
+	it('keeps the fixed background grid while fetching and adding elements', async () => {
 		const element = new TestElement('element-1');
 		const fromService = new TestElement('from-service');
-		const service: IEditorService = { getWhiteboardElements: vi.fn(() => [fromService]) };
+		const service: IEditorService = {
+			getWhiteboardElements: vi.fn(async () => [fromService])
+		};
 		const store = new ElementStore(service);
 
 		expect(store.rawElements).toMatchObject([
 			{ id: BACKGROUND_GRID_ID, flags: RenderFlags.FIXED }
 		]);
-		expect(store.fetch()).toEqual([
+		await store.load();
+		expect(store.elements).toEqual([
 			expect.objectContaining({ id: BACKGROUND_GRID_ID, flags: RenderFlags.FIXED }),
 			fromService
 		]);

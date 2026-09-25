@@ -5,6 +5,7 @@ import MockElement from './__mocks__/MockElement.svelte';
 import type { IEditorService } from '$lib/whiteboard/editor/interfaces/IEditorService';
 import RenderElement from '$lib/whiteboard/renderer/RenderElement';
 import ElementComponentFactory from '$lib/whiteboard/renderer/ElementComponentFactory.svelte';
+import { ElementStore } from '$lib/whiteboard/renderer/ElementStore.svelte';
 import Whiteboard from '$lib/whiteboard/renderer/Whiteboard.svelte';
 
 class TestElement extends RenderElement {
@@ -23,10 +24,10 @@ class TestElement extends RenderElement {
 describe('Whiteboard', () => {
 	it('fetches browser data and renders registered element components', async () => {
 		const service: IEditorService = {
-			getWhiteboardElements: vi.fn(() => [new TestElement()])
+			getWhiteboardElements: vi.fn(async () => [new TestElement()])
 		};
 		render(Whiteboard, {
-			service,
+			store: new ElementStore(service),
 			factory: new ElementComponentFactory({ note: MockElement })
 		});
 
